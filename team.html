@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Star Wars Express</h1>
+      <h3>The greatest resource in the galaxy for Star Wars statistics!</h3>
+      <hr>
+      
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Character Statistics</strong></h3>
+          </div>
+          <div class="panel-body" id="well-section">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <script type="text/javascript">
+
+
+      // QUESTION: What does $.get do? What are the parameters it is expecting?
+      $.get("/api/characters", function(data) {
+        for (var i = 0; i < data.length; i++) {
+        var wellSection = $("<div>");
+            wellSection.addClass("well");
+            wellSection.attr("id", "characters-well-" + i);
+            $("#well-section").append(wellSection);
+            $("#characters-well-" + i).append("<h2>" + data[i].name + "</h2>");
+            $("#characters-well-" + i).append("<h3>" + data[i].role + "</h3>");
+            $("#characters-well-" + i).append("<h3>" + data[i].age + "</h3>");
+            $("#characters-well-" + i).append("<h3>" + data[i].forcePoints + "</h3>");
+            
+        }
+      });
+    
+  </script>
+
+</body>
+</html>
